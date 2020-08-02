@@ -526,6 +526,11 @@ def calc_curv_rad(img, left_fit, right_fit, left_lane_indx, right_lane_indx):
         Right curvature radius.
 
     """
+    
+    # init
+    left_curve_rad = 0
+    right_curve_rad = 0
+    
     # Define conversions in x and y from pixels space to meters
     ym_per_pix = 3.048/100 # meters per pixel in y dimension
     xm_per_pix = 3.7/378 # meters per pixel in x dimension
@@ -700,8 +705,8 @@ objPoints, imgPoints = caliberateCamera()
 left_line = Line()
 right_line = Line()
 
-video_out = 'project_video_output.mp4'
-video_in = VideoFileClip('project_video.mp4')
+video_out = 'harder_challenge_video_out.mp4'
+video_in = VideoFileClip('harder_challenge_video.mp4')
 
 processed_video = video_in.fl_image(process_frame)
 

@@ -23,7 +23,9 @@ The goals / steps of this project are the following:
 [im06]: ./output_images/sliding_window.png "Sliding window polyfit"
 [im07]: ./output_images/finalresult.png "Lane and Data drwan back on Image"
 
-[video1]: ./project_video_output.mp4 "Video"
+[video1]: ./project_video_output.mp4 "Project Video"
+[video2]: ./challenge_video_out.mp4 "Challenge Video"
+[video3]: ./harder_challenge_video_out.mp4 "Harder challenge Video"
 
 ## [Rubric](https://review.udacity.com/#!/rubrics/571/view) Points
 *Here I will consider the rubric points individually and describe how I addressed each point in my implementation.*
@@ -116,3 +118,7 @@ Here's a [link to my video result](./project_video_output.mp4)
 The most of the problems were because of lighting conditions, shadows, discoloration, etc. It was easy to implement the pipeline of project video but i am facing issues to get it work with challenge video actually both of them. Also there will be issue to detect lines if there is white car driving closely to our car it will be very difiicult to identify the lane lines in that scenario or if there is snow on the road. Also I consider if we are not able to identify lane lines we can average over last `n` reading to detect the lane lines.
 
 I've considered a few possible approaches for making my algorithm more robust. Instead of having hard coded image perspective warping we can do it dynamic based on the scene and how long we want to `look ahead` on the road. Also color thresholding can be made dynamic and robust to adjust to different light conditions.
+
+Here's a [link to challenge video result](./challenge_video_out.mp4)
+
+Here's a [link to harder challenge video result](./harder_challenge_video_out.mp4)

@@ -121,7 +121,7 @@ def getObjImgPoints(images, nX, nY):
         grayImage = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)
         # find chessboard corner in image
         status, corners = cv2.findChessboardCorners(grayImage, (nX, nY), None)
-        #if the 'status' is true from previous function update image and object points
+        #if the 'status' is true from previous function update image and object points        
         if status == True:
             imgPoints.append(corners)
             objPoints.append(objP)
@@ -285,7 +285,7 @@ def LAB_B_channel(img, thresh=(190, 255)):
         bChannel = bChannel*(255/np.max(bChannel)) # normalize
     # Apply threshold
     bChannel_thresh = np.zeros_like(bChannel)
-    bChannel_thresh[(bChannel > thresh[0]) & (bChannel <= thresh[1])] = 1
+    bChannel_thresh[(bChannel > thresh[0]) & (bChannel <= thresh[1])] = 1    
     
     return bChannel_thresh
 
@@ -316,7 +316,6 @@ def lane_edge_detection(img, objPoints, imgPoints):
     undist_img = undistortImg(img, objPoints, imgPoints)
     # unwarp undistorted image
     unwarp_img, M, Minv = unwarp(undist_img)
-    #plt.imshow(unwarp_img)
     # extract edges using l channel in HSV color space
     lChannel_img = HLS_L_channel(unwarp_img)
     # extract edges using b channel in LAB color space
@@ -434,16 +433,17 @@ def sliding_window(img):
     
     ## Visualization ##
     # Generate x and y values for plotting
-    ploty = np.linspace(0, img.shape[0]-1, img.shape[0] )
+    #ploty = np.linspace(0, img.shape[0]-1, img.shape[0] )
     
-    left_fitx = left_fit[0]*ploty**2 + left_fit[1]*ploty + left_fit[2]
-    right_fitx = right_fit[0]*ploty**2 + right_fit[1]*ploty + right_fit[2]
+    #left_fitx = left_fit[0]*ploty**2 + left_fit[1]*ploty + left_fit[2]
+    #right_fitx = right_fit[0]*ploty**2 + right_fit[1]*ploty + right_fit[2]
         
     # Colors in the left and right lane regions
     out_img[lefty, leftx] = [255, 0, 0]
     out_img[righty, rightx] = [0, 0, 255]
 
     # Plots the left and right polynomials on the lane lines
+    #plt.imshow(out_img)
     #plt.plot(left_fitx, ploty, color='yellow')
     #plt.plot(right_fitx, ploty, color='yellow')
 
@@ -726,13 +726,13 @@ processed_video.write_videofile(video_out, audio=False)
 #     plt.imshow(final_res)
 #     imageCounter += 1
 
-#imagePath = 'test_images/test5.jpg'
-#test_image = mpimg.imread(imagePath)
-#edgelines_img, Minv = lane_edge_detection(imagePath, objPoints, imgPoints)
-#_, left_fit, right_fit, left_lane_indx, right_lane_indx = sliding_window(edgelines_img)
-#left_curve_rad, right_curve_rad = calc_curv_rad(edgelines_img, left_fit, right_fit, left_lane_indx, right_lane_indx)
-#out_img, left_fit, right_fit, left_lane_inds, right_lane_inds = sliding_window(edgelines_img)
-#final_res = draw_lane_original(test_image, edgelines_img, left_fit, right_fit, Minv)
-#plt.imshow(final_res)
+# imagePath = 'test_images/test5.jpg'
+# test_image = mpimg.imread(imagePath)
+# edgelines_img, Minv = lane_edge_detection(imagePath, objPoints, imgPoints)
+# _, left_fit, right_fit, left_lane_indx, right_lane_indx = sliding_window(edgelines_img)
+# left_curve_rad, right_curve_rad = calc_curv_rad(edgelines_img, left_fit, right_fit, left_lane_indx, right_lane_indx)
+# #out_img, left_fit, right_fit, left_lane_inds, right_lane_inds = sliding_window(edgelines_img)
+# final_res = draw_lane_original(test_image, edgelines_img, left_fit, right_fit, Minv, left_curve_rad, right_curve_rad)
+# plt.imshow(final_res)
 
 

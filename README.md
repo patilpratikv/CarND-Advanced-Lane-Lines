@@ -15,20 +15,13 @@ The goals / steps of this project are the following:
 
 [//]: # (Image References)
 
-[im01]: ./output_images/01-calibration.png "Chessboard Calibration"
-[im02]: ./output_images/02-undistort_chessboard.png "Undistorted Chessboard"
-[im03]: ./output_images/03-undistort.png "Undistorted Dashcam Image"
-[im04]: ./output_images/04-unwarp.png "Perspective Transform"
-[im05]: ./output_images/05-colorspace_exploration.png "Colorspace Exploration"
-[im06]: ./output_images/09-sobel_magnitude_and_direction.png "Sobel Magnitude & Direction"
-[im07]: ./output_images/11-hls_l_channel.png "HLS L-Channel"
-[im08]: ./output_images/12-lab_b_channel.png "LAB B-Channel"
-[im09]: ./output_images/13-pipeline_all_test_images.png "Processing Pipeline for All Test Images"
-[im10]: ./output_images/14-sliding_window_polyfit.png "Sliding Window Polyfit"
-[im11]: ./output_images/15-sliding_window_histogram.png "Sliding Window Histogram"
-[im12]: ./output_images/16-polyfit_from_previous_fit.png "Polyfit Using Previous Fit"
-[im13]: ./output_images/17-draw_lane.png "Lane Drawn onto Original Image"
-[im14]: ./output_images/18-draw_data.png "Data Drawn onto Original Image"
+[im01]: ./output_images/chessboardcalib.png "Chessboard Calibration"
+[im02]: ./output_images/undistort.png "Undistorted Dashcam Image"
+[im03]: ./output_images/warped_img.png "Perspective Transform"
+[im04]: ./output_images/L_binary.png "HSL L channel Binary white line Image"
+[im05]: ./output_images/B_binary.png "LAB B channel Binary yellow line Image"
+[im06]: ./output_images/sliding_window.png "Sliding window polyfit"
+[im07]: ./output_images/finalresult.png "Lane and Data drwan back on Image"
 
 [video1]: ./project_video_output.mp4 "Video"
 
@@ -52,17 +45,13 @@ In built OpenCV functions `findChessboardCorners` and `calibrateCamera` are used
 
 ![alt text][im01]
 
-The below image show chessboard after calling `undistort`function.
-
-![alt text][im02]
-
 ### Pipeline (single images)
 
 #### 1. Provide an example of a distortion-corrected image.
 
-`undistortImg` function is implemented which takes calibration data points for the camera and correct the distortion in the image. Following is example of the undistorted image. You can the hood is bottom of the image depicts the change.:
+`undistortImg` function is implemented which takes calibration data points for the camera and correct the distortion in the image. Following is example of the undistorted image. You can see the hood is bottom of the image depicts the change.:
 
-![alt text][im03]
+![alt text][im02]
 
 #### 2. Describe how (and identify where in your code) you used color transforms, gradients or other methods to create a thresholded binary image.  Provide an example of a binary image result.
 
@@ -70,14 +59,16 @@ I focused on HSL and LAB color spaces and thresholding to identify the lanes in 
 
 Ultimately, I chose to use just the L channel of the HLS color space to isolate white lines and the B channel of the LAB color space to isolate yellow lines. I did the thresholding for the colors and then normalize it to remove the effect of light in the image. :
 
+![alt text][im03]
 ![alt text][im04]
+![alt text][im05]
 
 #### 3. Describe how (and identify where in your code) you performed a perspective transform and provide an example of a transformed image.
 
 In function `unwarp` I did implement the perspective transform of the image. source and destination points are hard coded based on camera position and approximate field of view in which we want to find the lane lines in front of the vehicle.
 Following is the example of one of the warped images from test folder.
 
-![alt text][im05]
+![alt text][im03]
 
 #### 4. Describe how (and identify where in your code) you identified lane-line pixels and fit their positions with a polynomial?
 
